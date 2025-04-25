@@ -1,4 +1,4 @@
-/* style.css (frontend フォルダ内) */
+/* ichigo-ichie-chat/frontend/style.css (修正版) */
 body {
   font-family: sans-serif;
   display: flex;
@@ -18,16 +18,43 @@ body {
   overflow-y: scroll; /* メッセージが増えたらスクロール */
   background-color: #fff;
   padding: 10px;
-  box-sizing: border-box; /* paddingを含めてサイズ計算 */
+  box-sizing: border-box;
+  display: flex; /* ★ メッセージ配置のために追加 */
+  flex-direction: column; /* ★ メッセージを縦に並べる */
 }
 
+/* ★ メッセージ要素の基本スタイル */
 #chatbox div {
-  /* 個々のメッセージ用 */
-  margin-bottom: 5px;
-  padding: 8px;
-  background-color: #e9eaf0;
-  border-radius: 5px;
-  word-wrap: break-word; /* 長い単語も折り返す */
+  padding: 8px 12px; /* 少しパディング調整 */
+  border-radius: 10px; /* 角を少し丸く */
+  margin-bottom: 8px; /* メッセージ間の余白 */
+  max-width: 75%; /* メッセージ幅が広がりすぎないように */
+  word-wrap: break-word;
+}
+
+/* ★ 他の人のメッセージ */
+.other-message {
+  background-color: #e9eaf0; /* 元の色 */
+  align-self: flex-start; /* 左寄せ */
+  margin-right: auto; /* 右側の余白を自動で取る */
+}
+
+/* ★ 自分のメッセージ */
+.my-message {
+  background-color: lightblue; /* 水色 */
+  color: #1c1e21; /* 文字色を少し濃く (任意) */
+  align-self: flex-end; /* 右寄せ */
+  margin-left: auto; /* 左側の余白を自動で取る */
+}
+
+/* ★ システムメッセージ (入退室など) */
+.system-message {
+  font-style: italic;
+  color: gray;
+  align-self: center; /* 中央寄せ */
+  max-width: 100%; /* 幅制限を解除 */
+  background-color: transparent; /* 背景色なし */
+  padding: 4px 0; /* 上下の余白調整 */
 }
 
 #inputArea {
@@ -37,7 +64,7 @@ body {
 }
 
 #messageInput {
-  flex-grow: 1; /* 入力欄ができるだけ幅を取る */
+  flex-grow: 1;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
