@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>ここだけの話</h1>
-    <div id="chatbox"></div>
-    <div id="inputArea">
-      <input type="text" id="messageInput" placeholder="メッセージを入力..." />
-      <button id="sendButton">送信</button>
+    <div id="chat-container">
+      <div id="chatbox"></div>
+
+      <div id="input-area-container">
+        <div id="inputArea">
+          <textarea
+            id="messageInput"
+            placeholder="メッセージを入力..."
+            rows="1"
+          ></textarea>
+          <button id="sendButton">送信</button>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>

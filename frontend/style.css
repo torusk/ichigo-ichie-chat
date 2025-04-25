@@ -1,85 +1,131 @@
-/* ichigo-ichie-chat/frontend/style.css (修正版) */
+/* ichigo-ichie-chat/frontend/style.css (大幅修正版) */
+
+/* 基本設定 */
+* {
+  box-sizing: border-box; /* paddingとborderをwidth/heightに含める */
+}
+
+html,
 body {
-  font-family: sans-serif;
+  height: 100%; /* 高さを画面全体に */
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif; /* モダンなフォントに変更 (例) */
+  background-color: #f8f9fa; /* 背景色を少し変更 (例) */
+}
+
+/* チャットコンテナ全体 */
+#chat-container {
+  display: flex;
+  flex-direction: column; /* 縦方向に要素を並べる */
+  height: 100%; /* 親要素(body)の高さ全体を使う */
+  max-width: 800px; /* 最大幅を設定 (任意) */
+  margin: 0 auto; /* 中央寄せ */
+  background-color: #fff; /* コンテナ自体の背景色 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 影を追加 (任意) */
+  overflow: hidden; /* コンテナ外のはみ出しを隠す */
+}
+
+/* チャットメッセージ表示エリア */
+#chatbox {
+  flex-grow: 1; /* できるだけ高さを取る */
+  overflow-y: auto; /* 縦スクロールを有効化 */
+  padding: 20px 15px; /* 内側の余白 */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f4f4f4;
 }
 
-#chatbox {
-  width: 80%;
-  max-width: 600px;
-  height: 70vh;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  overflow-y: scroll; /* メッセージが増えたらスクロール */
-  background-color: #fff;
-  padding: 10px;
-  box-sizing: border-box;
-  display: flex; /* ★ メッセージ配置のために追加 */
-  flex-direction: column; /* ★ メッセージを縦に並べる */
-}
-
-/* ★ メッセージ要素の基本スタイル */
+/* メッセージ要素の基本スタイル */
 #chatbox div {
-  padding: 8px 12px; /* 少しパディング調整 */
-  border-radius: 10px; /* 角を少し丸く */
-  margin-bottom: 8px; /* メッセージ間の余白 */
-  max-width: 75%; /* メッセージ幅が広がりすぎないように */
+  padding: 10px 15px;
+  border-radius: 18px; /* より丸みのある角 */
+  margin-bottom: 10px;
+  max-width: 75%;
   word-wrap: break-word;
+  line-height: 1.4; /* 行間を少し広げる */
 }
 
-/* ★ 他の人のメッセージ */
+/* 他の人のメッセージ */
 .other-message {
-  background-color: #e9eaf0; /* 元の色 */
-  align-self: flex-start; /* 左寄せ */
-  margin-right: auto; /* 右側の余白を自動で取る */
+  background-color: #f1f0f0; /* 背景色を少し変更 */
+  color: #333; /* 文字色 */
+  align-self: flex-start;
+  margin-right: auto;
+  border-bottom-left-radius: 4px; /* 左下だけ少し角ばらせる (任意) */
 }
 
-/* ★ 自分のメッセージ */
+/* 自分のメッセージ */
 .my-message {
-  background-color: lightblue; /* 水色 */
-  color: #1c1e21; /* 文字色を少し濃く (任意) */
-  align-self: flex-end; /* 右寄せ */
-  margin-left: auto; /* 左側の余白を自動で取る */
+  background-color: #007bff; /* ChatGPT風の青色に変更 (例) */
+  color: white; /* 文字色を白に */
+  align-self: flex-end;
+  margin-left: auto;
+  border-bottom-right-radius: 4px; /* 右下だけ少し角ばらせる (任意) */
 }
 
-/* ★ システムメッセージ (入退室など) */
+/* システムメッセージ */
 .system-message {
   font-style: italic;
-  color: gray;
-  align-self: center; /* 中央寄せ */
-  max-width: 100%; /* 幅制限を解除 */
-  background-color: transparent; /* 背景色なし */
-  padding: 4px 0; /* 上下の余白調整 */
+  color: #6c757d; /* 色を少し変更 */
+  align-self: center;
+  font-size: 0.9em;
+  padding: 5px 0;
+  background-color: transparent;
+  max-width: 100%;
 }
 
+/* 入力エリアのコンテナ (画面下部に固定) */
+#input-area-container {
+  padding: 15px; /* 周囲の余白 */
+  border-top: 1px solid #e0e0e0; /* 上部に境界線 */
+  background-color: #fff; /* 背景色 */
+}
+
+/* 入力エリア本体 (テキストエリアとボタンを横並び) */
 #inputArea {
   display: flex;
-  width: 80%;
-  max-width: 600px;
+  align-items: flex-end; /* 下端揃え (テキストエリアの高さが変わるため) */
+  border: 1px solid #ced4da; /* 枠線 */
+  border-radius: 24px; /* 角を丸く */
+  padding: 8px 8px 8px 15px; /* 内側の余白調整 */
+  background-color: #f8f9fa; /* 背景色を少し変える (任意) */
 }
 
+/* メッセージ入力テキストエリア */
 #messageInput {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  flex-grow: 1; /* 幅をできるだけ取る */
+  border: none; /* 枠線を消す */
+  outline: none; /* フォーカス時の枠線も消す */
+  padding: 10px 0; /* 上下のパディング */
+  font-size: 1rem; /* フォントサイズ */
+  line-height: 1.5; /* 行間 */
+  resize: none; /* ユーザーによるリサイズを無効化 */
+  max-height: 120px; /* 最大の高さを制限 (スクロールが出る) */
+  overflow-y: auto; /* 高さが超えたらスクロール */
+  background-color: transparent; /* 親要素の背景色を使う */
+  color: #333;
 }
 
+/* 送信ボタン */
 #sendButton {
+  flex-shrink: 0; /* ボタンが縮まないように */
+  margin-left: 8px;
   padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
   background-color: #007bff;
   color: white;
   border: none;
+  border-radius: 20px; /* 丸みのあるボタン */
   cursor: pointer;
-  border-radius: 3px;
-  margin-left: 5px;
+  transition: background-color 0.2s ease; /* ホバー効果 */
 }
 
 #sendButton:hover {
   background-color: #0056b3;
+}
+
+/* ボタンが無効の時のスタイル (任意) */
+#sendButton:disabled {
+  background-color: #a0cfff;
+  cursor: not-allowed;
 }

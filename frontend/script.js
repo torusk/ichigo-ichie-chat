@@ -106,3 +106,28 @@ messageInput.addEventListener("keydown", (event) => {
 // 初期状態では入力欄とボタンを無効化しておく (変更なし)
 messageInput.disabled = true;
 sendButton.disabled = true;
+
+// ★ テキストエリアの高さ自動調整機能を追加 ★
+messageInput.addEventListener("input", () => {
+  // 一旦高さをリセットして、スクロール高さを取得
+  messageInput.style.height = "auto";
+  // スクロール高さに基づいて高さを設定 (CSSのmax-heightを超えない)
+  messageInput.style.height = `${messageInput.scrollHeight}px`;
+});
+
+// Enterキーでの送信 (Shift+Enterで改行できるように調整)
+messageInput.addEventListener("keydown", (event) => {
+  // Shiftキーが押されておらず、Enterキーが押された場合のみ送信
+  if (event.key === "Enter" && !event.shiftKey && !messageInput.disabled) {
+    event.preventDefault(); // デフォルトのEnterキー動作（改行）をキャンセル
+    sendMessage();
+    // 送信後、高さをリセット
+    messageInput.style.height = "auto";
+  }
+  // Shift+Enterの場合は通常の改行が行われる
+});
+
+// ★ 既存のEnterキーリスナーは削除 (上記で処理するため) ★
+// messageInput.removeEventListener('keydown', ...); // もし以前のkeydownリスナーがあれば削除を検討
+
+// --- 既存のコードはそのまま ---
