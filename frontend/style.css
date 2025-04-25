@@ -1,4 +1,4 @@
-/* ichigo-ichie-chat/frontend/style.css (完成版 - シームレスUI・マイクボタン除去・最終) */
+/* ichigo-ichie-chat/frontend/style.css (最終目標UI版 - 絶対配置) */
 
 * {
   box-sizing: border-box;
@@ -9,7 +9,7 @@ body {
   height: 100%;
   margin: 0;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #f8f9fa; /* Body background */
+  background-color: #f8f9fa;
 }
 
 #chat-container {
@@ -18,7 +18,7 @@ body {
   height: 100%;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #fff; /* Main chat background */
+  background-color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -67,43 +67,47 @@ body {
   max-width: 100%;
 }
 
-/* --- Input Area Styles (Seamless) --- */
+/* --- Input Area Styles (Absolute Positioning Buttons) --- */
 #input-area-container {
-  padding: 15px 15px 20px 15px; /* Padding for spacing */
-  /* background-color and border-top removed */
-  margin-top: auto; /* Keep it at the bottom */
+  padding: 10px 15px 15px 15px; /* Bottom padding adjusted */
+  background-color: #fff; /* Match chat container background */
+  margin-top: auto;
 }
 
 #inputArea {
-  position: relative; /* Context for absolute positioned buttons */
+  position: relative; /* Crucial for absolute positioning children */
   border-radius: 24px;
-  padding: 5px; /* Padding inside the rounded border */
+  padding: 0; /* Remove padding from container itself */
   background-color: #f0f4f9; /* Background for the input group */
-  border: 1px solid #dfe1e5; /* Subtle border for the group */
-  min-height: 50px; /* Ensure min height for button placement */
+  border: 1px solid #dfe1e5;
+  min-height: 54px; /* Adjust to fit buttons + padding (approx 8px*2 + 40px button height) */
+  /* display: flex removed */
 }
 
 #messageInput {
   display: block;
-  width: 100%;
+  width: 100%; /* Take full width */
+  min-height: 52px; /* Match container min-height minus border */
+  max-height: 180px; /* Keep max height */
+  padding: 16px 55px 16px 55px; /* ★ Crucial: Top/Bottom padding + Left/Right padding for buttons */
+  margin: 0;
   border: none;
   outline: none;
-  padding: 12px 55px 12px 55px; /* Left/Right padding for buttons */
-  margin: 0;
+  border-radius: 24px; /* Match parent border radius */
   font-size: 1rem;
   line-height: 1.5;
   resize: none;
-  max-height: 180px;
   overflow-y: auto;
-  background-color: transparent; /* Use parent background */
+  background-color: transparent; /* Let parent background show */
   color: #333;
-  min-height: calc(
-    1.5rem + 24px
-  ); /* Ensure min height for approx 1 line + padding */
+  /* removed height: 100% - was conflicting */
 }
 
 /* Icon Button Base Styles */
 .icon-button {
+  position: absolute; /* Position absolutely within #inputArea */
+  bottom: 7px; /* Position from bottom (adjust as needed) */
+  z-index: 1; /* Ensure buttons are above textarea */
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -118,9 +122,6 @@ body {
   color: #5f6368;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  position: absolute; /* Position buttons over the textarea space */
-  bottom: 10px; /* Position from bottom */
-  z-index: 1; /* Ensure buttons are above textarea */
 }
 .icon-button:hover {
   background-color: #e8e8e8;
@@ -141,7 +142,6 @@ body {
 
 /* Send Button Position & Style */
 #sendButton.send-icon {
-  /* Apply only if send button uses send-icon class */
   right: 10px; /* Position from right */
   font-size: 1.5rem;
   padding-left: 2px;
@@ -152,10 +152,7 @@ body {
 }
 #sendButton.send-icon:disabled {
   color: #bdc1c6;
-  background-color: transparent;
 }
 #sendButton.send-icon:disabled:hover {
   background-color: transparent;
 }
-
-/* Remove styles for #micButton as it's deleted */
