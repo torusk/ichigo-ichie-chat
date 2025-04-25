@@ -1,4 +1,4 @@
-/* ichigo-ichie-chat/frontend/style.css (完成版 - シームレスUI・マイクボタン除去) */
+/* ichigo-ichie-chat/frontend/style.css (完成版 - シームレスUI・マイクボタン除去・最終) */
 
 * {
   box-sizing: border-box;
@@ -69,26 +69,27 @@ body {
 
 /* --- Input Area Styles (Seamless) --- */
 #input-area-container {
-  padding: 15px 15px 20px 15px;
-  /* background-color and border-top removed for seamless look */
-  margin-top: auto;
+  padding: 15px 15px 20px 15px; /* Padding for spacing */
+  /* background-color and border-top removed */
+  margin-top: auto; /* Keep it at the bottom */
 }
 
 #inputArea {
-  display: flex;
-  align-items: flex-end;
+  position: relative; /* Context for absolute positioned buttons */
   border-radius: 24px;
-  padding: 5px 8px;
-  background-color: #f0f4f9; /* Input group background */
-  /* border removed for seamless look */
+  padding: 5px; /* Padding inside the rounded border */
+  background-color: #f0f4f9; /* Background for the input group */
+  border: 1px solid #dfe1e5; /* Subtle border for the group */
+  min-height: 50px; /* Ensure min height for button placement */
 }
 
 #messageInput {
-  flex-grow: 1;
+  display: block;
+  width: 100%;
   border: none;
   outline: none;
-  padding: 12px 10px;
-  margin: 0 5px;
+  padding: 12px 55px 12px 55px; /* Left/Right padding for buttons */
+  margin: 0;
   font-size: 1rem;
   line-height: 1.5;
   resize: none;
@@ -96,8 +97,12 @@ body {
   overflow-y: auto;
   background-color: transparent; /* Use parent background */
   color: #333;
+  min-height: calc(
+    1.5rem + 24px
+  ); /* Ensure min height for approx 1 line + padding */
 }
 
+/* Icon Button Base Styles */
 .icon-button {
   flex-shrink: 0;
   display: inline-flex;
@@ -113,31 +118,13 @@ body {
   color: #5f6368;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  position: absolute; /* Position buttons over the textarea space */
+  bottom: 10px; /* Position from bottom */
+  z-index: 1; /* Ensure buttons are above textarea */
 }
-
 .icon-button:hover {
   background-color: #e8e8e8;
 }
-
-/* Mic button styles removed as element is deleted from HTML */
-
-.send-icon {
-  font-size: 1.5rem;
-  padding-left: 2px;
-  color: #1a73e8;
-}
-.send-icon:hover {
-  background-color: #e8f0fe;
-}
-.send-icon:disabled {
-  color: #bdc1c6;
-  background-color: transparent;
-  cursor: not-allowed;
-}
-.send-icon:disabled:hover {
-  background-color: transparent;
-}
-
 .icon-button:disabled {
   color: #bdc1c6;
   background-color: transparent;
@@ -146,3 +133,29 @@ body {
 .icon-button:disabled:hover {
   background-color: transparent;
 }
+
+/* Attach Button Position */
+#attachButton {
+  left: 10px; /* Position from left */
+}
+
+/* Send Button Position & Style */
+#sendButton.send-icon {
+  /* Apply only if send button uses send-icon class */
+  right: 10px; /* Position from right */
+  font-size: 1.5rem;
+  padding-left: 2px;
+  color: #1a73e8;
+}
+#sendButton.send-icon:hover {
+  background-color: #e8f0fe;
+}
+#sendButton.send-icon:disabled {
+  color: #bdc1c6;
+  background-color: transparent;
+}
+#sendButton.send-icon:disabled:hover {
+  background-color: transparent;
+}
+
+/* Remove styles for #micButton as it's deleted */
