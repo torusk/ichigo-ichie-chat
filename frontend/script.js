@@ -60,8 +60,6 @@ socket.onerror = (error) => {
 function sendMessage() {
   const message = messageInput.value;
   if (message.trim() !== "") {
-    // ★ 自分の送信メッセージも表示するよう変更 ★
-    displayMessage(`${username}: ${message}`); // 送信時に自分にも表示
     socket.send(message);
     messageInput.value = "";
   }
