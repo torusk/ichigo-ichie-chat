@@ -83,28 +83,28 @@ body {
 /* 入力エリア本体 (テキストエリアとボタンを横並び) */
 #inputArea {
   display: flex;
-  align-items: flex-end; /* 下端揃え (テキストエリアの高さが変わるため) */
-  border: 1px solid #ced4da; /* 枠線 */
-  border-radius: 24px; /* 角を丸く */
-  padding: 8px 8px 8px 15px; /* 内側の余白調整 */
-  background-color: #f8f9fa; /* 背景色を少し変える (任意) */
+  align-items: flex-end; /* 下端揃え */
+  /* border: 1px solid #ced4da; */ /* ★ 枠線をコメントアウトまたは削除 */
+  border-radius: 24px;
+  padding: 8px 8px 8px 15px;
+  background-color: #f8f9fa;
 }
 
 /* メッセージ入力テキストエリア */
 #messageInput {
-  flex-grow: 1; /* 幅をできるだけ取る */
-  border: none; /* 枠線を消す */
-  outline: none; /* フォーカス時の枠線も消す */
-  padding: 10px 0; /* 上下のパディング */
-  font-size: 1rem; /* フォントサイズ */
-  line-height: 1.5; /* 行間 */
-  resize: none; /* ユーザーによるリサイズを無効化 */
-  max-height: 120px; /* 最大の高さを制限 (スクロールが出る) */
-  overflow-y: auto; /* 高さが超えたらスクロール */
-  background-color: transparent; /* 親要素の背景色を使う */
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 10px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  /* max-height: 120px; */ /* ★ 最大の高さを少し増やす (例: 150px や 180px などお好みで) */
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: transparent;
   color: #333;
 }
-
 /* 送信ボタン */
 #sendButton {
   flex-shrink: 0; /* ボタンが縮まないように */
