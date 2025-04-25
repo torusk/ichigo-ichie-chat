@@ -13,7 +13,7 @@ const socket = new WebSocket("wss://ichigo-ichie-chat.onrender.com");
 socket.onopen = () => {
   console.log("WebSocketサーバーに接続しました。");
   while (!username || username.trim().length === 0 || username.length >= 20) {
-    username = prompt("チャットで使う名前を入力してください (19文字以内):");
+    username = prompt("チャット名を入力してください:");
     if (username === null) {
       displayMessage(
         "名前が入力されなかったので切断します。ページを再読み込みしてください。",
