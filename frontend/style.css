@@ -1,0 +1,58 @@
+/* style.css (frontend フォルダ内) */
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+#chatbox {
+  width: 80%;
+  max-width: 600px;
+  height: 70vh;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  overflow-y: scroll; /* メッセージが増えたらスクロール */
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box; /* paddingを含めてサイズ計算 */
+}
+
+#chatbox div {
+  /* 個々のメッセージ用 */
+  margin-bottom: 5px;
+  padding: 8px;
+  background-color: #e9eaf0;
+  border-radius: 5px;
+  word-wrap: break-word; /* 長い単語も折り返す */
+}
+
+#inputArea {
+  display: flex;
+  width: 80%;
+  max-width: 600px;
+}
+
+#messageInput {
+  flex-grow: 1; /* 入力欄ができるだけ幅を取る */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#sendButton {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+#sendButton:hover {
+  background-color: #0056b3;
+}
